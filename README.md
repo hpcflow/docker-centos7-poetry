@@ -5,6 +5,10 @@ Dockerfile for running Python 3.9 and poetry within a CentOS 7 container. This i
 **Example GitHub action that uses this container**
 
 ```yaml
+name: build-executables
+on:
+  workflow_dispatch:
+jobs:
   build-executable-CentOS:
     runs-on: ubuntu-latest
     container:
