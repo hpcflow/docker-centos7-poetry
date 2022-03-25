@@ -22,3 +22,10 @@ jobs:
       - name: Run PyInstaller
         run: poetry run pyinstaller hpcflow/cli.py --name=hpcflow --onefile
 ```
+
+# Build steps
+
+```
+docker build --tag aplowman/centos7-poetry .
+docker push
+```

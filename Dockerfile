@@ -4,7 +4,7 @@ RUN \
     yum install -y dnf \
     && dnf -y install wget \
     && dnf -y groupinstall "Development Tools" \
-    && dnf -y install gcc openssl-devel bzip2-devel libffi-devel \
+    && dnf -y install gcc openssl-devel bzip2-devel libffi-devel tk-devel \
     && cd /tmp/ \
     && wget https://www.python.org/ftp/python/3.9.10/Python-3.9.10.tgz \
     && tar xzf Python-3.9.10.tgz \
