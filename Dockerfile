@@ -17,7 +17,7 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/python/3.9.10/lib/
 ENV PATH=$PATH:/opt/python/3.9.10/bin/ 
 RUN \
     # Install poetry
-    curl -sSL https://install.python-poetry.org | python3.9
+    curl -sSL https://install.python-poetry.org | python3.9 - --version 1.2.2
 RUN \ 
     # Install modern version of git
     yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm \
