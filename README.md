@@ -27,8 +27,8 @@ jobs:
 
 The version tag is specified after the `:`, and should include the python and poetry versions:
 ```
-docker build -t ghcr.io/hpcflow/centos7-poetry:py3.9.10_po1.2.2 .
-docker push ghcr.io/hpcflow/centos7-poetry:py3.9.10_po1.2.2
+docker build -t ghcr.io/hpcflow/centos7-poetry:py3.9.16_po1.4.2 .
+docker push ghcr.io/hpcflow/centos7-poetry:py3.9.16_po1.4.2
 ```
 
 When updating the latest image use the tag `latest`:
