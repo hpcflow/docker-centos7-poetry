@@ -6,8 +6,16 @@ RUN <<SYS_REQ
     yum -y install gcc openssl-devel bzip2-devel libffi-devel tk-devel
 SYS_REQ
 
+# Install OpenSSL (1.1.1k):
+RUN <<OpenSSL
+    yum -y install epel-release
+    yum -y install openssl11 openssl11-devel
+OpenSSL
+ENV CFLAGS="-I/usr/include/openssl11"
+ENV LDFLAGS="-L/usr/lib64/openssl11 -lssl -lcrypto"
+
 # Install Python python_version from source:
-ARG python_version=3.9.16
+ARG python_version=3.10.9
 RUN <<MakePython
     cd /tmp/
     wget https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
