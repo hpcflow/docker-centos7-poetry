@@ -15,8 +15,11 @@ ENV CFLAGS="-I/usr/include/openssl11"
 ENV LDFLAGS="-L/usr/lib64/openssl11 -lssl -lcrypto"
 
 # Install Python python_version from source:
-ARG python_version=3.10.9
+ARG python_version=3.11.2
 RUN <<MakePython
+    yum -y install cvs
+    yum -y install centos-release-scl
+    yum -y install devtoolset-9-gcc-c++
     cd /tmp/
     wget https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
     tar xzf Python-${python_version}.tgz
