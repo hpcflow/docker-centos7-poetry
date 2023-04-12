@@ -14,14 +14,18 @@ OpenSSL
 ENV CFLAGS="-I/usr/include/openssl11"
 ENV LDFLAGS="-L/usr/lib64/openssl11 -lssl -lcrypto"
 
-# Install Python python_version from source:
-ARG python_version=3.11.2
-RUN <<MakePython
+# Update GCC (needed for python >= 3.11):
+RUN <<UpdateGCC
     yum -y install cvs
     yum -y install centos-release-scl
     yum -y install devtoolset-9-gcc-c++
+UpdateGCC
+
+# Install Python python_version from source:
+ARG python_version=3.11.2
+RUN <<MakePython
     cd /tmp/
-    wget https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
+    wget https://www.python.org/ftp/python/${python_version%a*}/Python-${python_version}.tgz
     tar xzf Python-${python_version}.tgz
     cd Python-${python_version}
     ./configure \
