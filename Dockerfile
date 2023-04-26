@@ -27,7 +27,7 @@ ENV TCLTK_CFLAGS="-I/usr/include"
 ENV TCLTK_LIBS="-L/usr/lib64 -ltcl8.5 -ltk8.5"
 
 # Install Python python_version from source:
-ARG python_version=3.11.2
+ARG python_version=3.11.3
 RUN /bin/bash <<MakePython
     cd /tmp/
     wget https://www.python.org/ftp/python/${python_version%a*}/Python-${python_version}.tgz
