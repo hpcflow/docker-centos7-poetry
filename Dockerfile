@@ -38,8 +38,10 @@ RUN /bin/bash <<MakePython
         --with-lto --with-computed-gotos --enable-shared
     make -j$(nproc)
     make altinstall
-    make check
     rm /tmp/Python-${python_version}.tgz
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/python/${python_version}/lib/
+    export PATH=$PATH:/opt/python/${python_version}/bin/
+    command python${python_version%.*} --version
 MakePython
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/python/${python_version}/lib/
 ENV PATH=$PATH:/opt/python/${python_version}/bin/
