@@ -12,7 +12,7 @@ jobs:
   build-executable-CentOS:
     runs-on: ubuntu-latest
     container:
-      image: aplowman/centos7-poetry
+      image: ghcr.io/hpcflow/centos7-poetry
     steps:
       - uses: actions/checkout@v2
 
@@ -23,9 +23,29 @@ jobs:
         run: poetry run pyinstaller hpcflow/cli.py --name=hpcflow --onefile
 ```
 
-# Build steps
+# Build steps (hosting in ghcr)
 
+The version tag is specified after the `:`, and should include the python and poetry versions:
 ```
-docker build --tag aplowman/centos7-poetry .
-docker push
+docker build -t ghcr.io/hpcflow/centos7-poetry:py3.9.16_po1.4.2 .
+docker push ghcr.io/hpcflow/centos7-poetry:py3.9.16_po1.4.2
 ```
+
+When updating the latest image use the tag `latest`:
+```
+docker build -t ghcr.io/hpcflow/centos7-poetry:latest .
+docker push ghcr.io/hpcflow/centos7-poetry:latest
+```
+<ins>**Make sure to push the image twice**</ins>! Once with the version tag and another with the latest tag.
+
+> **Note:** you may have to login to ghcr before pushing.
+> For that, first create a personal access token
+> (Settings / Developer settings / New token (classic))
+> with permissions for write and delete packages.
+> Copy the access token!
+> 
+> Then use your github username and the copied acces token to login with
+> ```
+> docker login ghcr.io
+> ```
+> You should now be ready to push.
